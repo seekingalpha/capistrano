@@ -183,6 +183,9 @@ module Capistrano
       end
 
       self
+    rescue IOError => e
+      logger.important "failed: #{e} on #{e.session.xserver}" if logger
+      raise
     end
 
     # Force the command to stop processing, by closing all open channels
